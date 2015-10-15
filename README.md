@@ -13,7 +13,7 @@
   .use('sw-precache', {cacheId: 'foo'})
 ```
 
-Generates a service worker script and adds it to your app. The generated script includes filenames and hashes of cacheable files in your app.
+This creates `service-worker.js` and adds it to your app. The generated script includes filenames and hashes of any cacheable files found in your app.
 
 
 ## Options
