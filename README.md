@@ -2,8 +2,11 @@
 
 > **Exhibit.js builder plugin**
 >
-> Generates a service worker script using the Google Chrome team’s [sw-precache](https://github.com/GoogleChrome/sw-precache) template.
+> Generates a service worker using the Chrome team’s [sw-precache](https://github.com/GoogleChrome/sw-precache) template.
 > 
+> ```sh
+> $ npm install -D exhibit-builder-sw-precache
+> ```
 > [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][depstat-image]][depstat-url]
 
 
@@ -18,7 +21,7 @@ This creates `service-worker.js` and adds it to your app. The generated script i
 
 ## Options
 
-> All options are technically optional, but it is usually a good idea to set, at minimum, a unique `cacheId`.
+> All options are technically optional, but it's a good idea to set a unique `cacheId` at minimum.
 
 #### sw-precache options
 
@@ -37,7 +40,7 @@ The following [sw-precache options](https://github.com/GoogleChrome/sw-precache#
 
 > **`include`** — default: `'**/*.{js,html,css,png,jpg,gif,svg}'`
 
-Chooses which files should be included in the service worker cache. Follows Exhibit's [matching convention](https://github.com/exhibitjs/exhibit/docs/matching.md).
+Chooses which files should be included in the service worker cache. Follows Exhibit's [glob convention](https://github.com/exhibitjs/exhibit/docs/glob.md).
 
 > **`filename`** — default: `'service-worker.js'`
 
