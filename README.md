@@ -1,6 +1,8 @@
 # sw-precache
 
-> **[Exhibit.js](https://github.com/exhibitjs/exhibit) builder**. Generates a service worker using the Google Chrome team’s [sw-precache](https://github.com/GoogleChrome/sw-precache) template.
+> **[Exhibit.js](https://github.com/exhibitjs/exhibit) builder**
+>
+> Generates a service worker script using the Google Chrome team’s [sw-precache](https://github.com/GoogleChrome/sw-precache) template.
 > 
 > [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][depstat-image]][depstat-url]
 
@@ -18,20 +20,6 @@ Generates a service worker script and adds it to your app. The generated script 
 
 > All options are technically optional, but it is usually a good idea to set, at minimum, a unique `cacheId`.
 
-#### Plugin options
-
-##### include
-
-Chooses which files should be included in the service-worker's cache.
-Default: `'**/*.{js,html,css,png,jpg,gif,svg}'`
-Follows Exhibit's [matching convention](https://github.com/exhibitjs/exhibit/docs/matching.md).
-
-##### filename
-
-The path for the genrerated service worker.
-Default: `'service-worker.js'`
-
-
 #### sw-precache options
 
 The following [sw-precache options](https://github.com/GoogleChrome/sw-precache#options) can be set directly:
@@ -43,6 +31,17 @@ The following [sw-precache options](https://github.com/GoogleChrome/sw-precache#
 - [`importScripts`](https://github.com/GoogleChrome/sw-precache#importscripts-arraystring)
 - ~~[`maximumFileSizeToCacheInBytes`](https://github.com/GoogleChrome/sw-precache#maximumfilesizetocacheinbytes-number)~~ *not yet working*
 - [`navigateFallback`](https://github.com/GoogleChrome/sw-precache#navigatefallback-string)
+
+
+#### Additional options
+
+> **`include`** — default: `'**/*.{js,html,css,png,jpg,gif,svg}'`
+
+Chooses which files should be included in the service worker cache. Follows Exhibit's [matching convention](https://github.com/exhibitjs/exhibit/docs/matching.md).
+
+> **`filename`** — default: `'service-worker.js'`
+
+The path for the generated service worker.
 
 
 ## License
