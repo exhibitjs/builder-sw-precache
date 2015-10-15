@@ -1,7 +1,7 @@
 {
   "name": "exhibit-builder-sw-precache",
   "description": "Generates a service worker using the Chrome team's sw-precache template",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": "Callum Locke",
   "dependencies": {
     "sw-precache": "^2.2.0"
