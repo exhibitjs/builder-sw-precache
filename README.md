@@ -1,6 +1,6 @@
 # sw-precache
 
-> **[Exhibit.js](https://github.com/exhibitjs/exhibit) builder**
+> **Exhibit.js builder plugin**
 >
 > Generates a service worker script using the Google Chrome team’s [sw-precache](https://github.com/GoogleChrome/sw-precache) template.
 > 
