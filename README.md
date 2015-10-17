@@ -1,13 +1,14 @@
-# sw-precache
-
+> # sw-precache
+>
 > **Exhibit.js builder plugin**
 >
 > Generates a service worker using the Chrome team’s [sw-precache](https://github.com/GoogleChrome/sw-precache) template.
-> 
+>
 > ```sh
 > $ npm install -D exhibit-builder-sw-precache
 > ```
-> [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][depstat-image]][depstat-url]
+>
+> [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][depstat-image]][depstat-url] [![devDependency Status][devdepstat-image]][devdepstat-url] [![peerDependency Status][peerdepstat-image]][peerdepstat-url]
 
 
 ## Usage
@@ -16,16 +17,24 @@
   .use('sw-precache', {cacheId: 'foo'})
 ```
 
-This creates `service-worker.js` and adds it to your app. The generated script includes filenames and hashes of any cacheable files found in your app.
+This looks for cacheable files in your app, and then generates a `service-worker.js` that will cache those files.
+
+This plugin should go at the end of your build sequence, after all cacheable assets’ contents have been finalized – i.e. after any preprocessors, minifiers, compressers, etc.
 
 
 ## Options
 
-> All options are technically optional, but it's a good idea to set a unique `cacheId` at minimum.
+> **`include`** (string/array/function) — default: `'**/*.{js,html,css,png,jpg,gif,svg}'`
 
-#### sw-precache options
+Chooses which files should be included in the service worker cache. Follows Exhibit’s [glob convention](https://github.com/exhibitjs/exhibit/blob/master/docs/glob-convention.md).
 
-The following [sw-precache options](https://github.com/GoogleChrome/sw-precache#options) can be set directly:
+> **`filename`** (string) — default: `'service-worker.js'`
+
+The path for the generated service worker.
+
+#### Additional options
+
+If set, the following options are used to configure the sw-precache template:
 
 - [`cacheId`](https://github.com/GoogleChrome/sw-precache#cacheid-string)
 - [`directoryIndex`](https://github.com/GoogleChrome/sw-precache#directoryindex-string)
@@ -36,16 +45,7 @@ The following [sw-precache options](https://github.com/GoogleChrome/sw-precache#
 - [`navigateFallback`](https://github.com/GoogleChrome/sw-precache#navigatefallback-string)
 
 
-#### Additional options
-
-> **`include`** — default: `'**/*.{js,html,css,png,jpg,gif,svg}'`
-
-Chooses which files should be included in the service worker cache. Follows Exhibit's [glob convention](https://github.com/exhibitjs/exhibit/docs/glob.md).
-
-> **`filename`** — default: `'service-worker.js'`
-
-The path for the generated service worker.
-
+---
 
 ## License
 
@@ -53,11 +53,17 @@ MIT
 
 
 <!-- badge URLs -->
-[npm-url]: https://npmjs.org/package/exhibit-builder-sw-precache
-[npm-image]: https://img.shields.io/npm/v/exhibit-builder-sw-precache.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/exhibit-builder-autoprefixer
+[npm-image]: https://img.shields.io/npm/v/exhibit-builder-autoprefixer.svg?style=flat-square
 
-[travis-url]: http://travis-ci.org/exhibitjs/builder-sw-precache
-[travis-image]: https://img.shields.io/travis/exhibitjs/builder-sw-precache.svg?style=flat-square
+[travis-url]: http://travis-ci.org/exhibitjs/builder-autoprefixer
+[travis-image]: https://img.shields.io/travis/exhibitjs/builder-autoprefixer.svg?style=flat-square
 
-[depstat-url]: https://david-dm.org/exhibitjs/builder-sw-precache
-[depstat-image]: https://img.shields.io/david/exhibitjs/builder-sw-precache.svg?style=flat-square
+[depstat-url]: https://david-dm.org/exhibitjs/builder-autoprefixer
+[depstat-image]: https://img.shields.io/david/exhibitjs/builder-autoprefixer.svg?style=flat-square
+
+[devdepstat-url]: https://david-dm.org/exhibitjs/builder-autoprefixer#info=devDependencies
+[devdepstat-image]: https://img.shields.io/david/dev/exhibitjs/builder-autoprefixer.svg?style=flat-square&label=devDeps
+
+[peerdepstat-url]: https://david-dm.org/exhibitjs/builder-autoprefixer#info=peerDependencies
+[peerdepstat-image]: https://img.shields.io/david/peer/exhibitjs/builder-autoprefixer.svg?style=flat-square&label=peerDeps

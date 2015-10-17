@@ -1,11 +1,12 @@
 import externalFunctions from 'sw-precache/lib/functions';
 import {createHash} from 'crypto';
 import {readFileSync} from 'fs';
-import {join} from 'path';
+import path from 'path';
 
-const templateString = readFileSync(join(
-  require.resolve('sw-precache'), '..', '..', 'service-worker.tmpl'
-), 'utf8');
+const templateString = readFileSync(
+  path.resolve(require.resolve('sw-precache'), '..', '..', 'service-worker.tmpl'),
+  'utf8'
+);
 
 const emptyBuffer = new Buffer('');
 
@@ -14,8 +15,8 @@ const emptyBuffer = new Buffer('');
 const VERSION = 'v1';
 
 const defaults = {
-  filename: 'service-worker.js',
   include: '**/*.{js,html,css,png,jpg,gif,svg}',
+  filename: 'service-worker.js',
 };
 
 export default function (options) {
@@ -25,16 +26,16 @@ export default function (options) {
   let files = [];
 
   // return a sequence of builders
-  // (this is a hack until 'batch builders' are implemented)
+  // (this is a hack, used until 'batch builders' are implemented in Exhibit core)
   return [
-    function exhibitSWPrecache1({relativePath, matches, contents}) {
+    function exhibitSWPrecache1({fileRelative, matches, contents}) {
       // add any matching files to an array
-      if (matches(options.include) && relativePath !== options.filename) {
-        if (files.indexOf(relativePath) === -1) files.push(relativePath);
+      if (matches(options.include) && fileRelative !== options.filename) {
+        if (files.indexOf(fileRelative) === -1) files.push(fileRelative);
 
         // and output the service worker
         return {
-          [relativePath]: contents,
+          [fileRelative]: contents,
           [options.filename]: emptyBuffer,
         };
       }
@@ -45,10 +46,10 @@ export default function (options) {
     function exhibitSWPrecache2(job) {
       const {
         importInternalFile, contents,
-        relativePath, util: {_},
+        fileRelative, util: {_},
       } = job;
 
-      if (relativePath !== options.filename) return contents;
+      if (fileRelative !== options.filename) return contents;
 
       // once only: compile the template to a function
       if (!template) template = _.template(templateString);

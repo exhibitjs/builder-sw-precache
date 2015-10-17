@@ -3,6 +3,19 @@
   "description": "Generates a service worker script using sw-precache",
   "version": "0.1.0",
   "author": "Callum Locke",
+  "babel": {
+    "stage": 0,
+    "blacklist": [
+      "regenerator",
+      "es6.forOf",
+      "es6.templateLiterals",
+      "es6.constants",
+      "es6.properties.computed"
+    ],
+    "optional": [
+      "bluebirdCoroutines"
+    ]
+  },
   "dependencies": {
     "sw-precache": "^2.2.0"
   },
@@ -10,20 +23,25 @@
     "babel": "^5.8.23",
     "babel-eslint": "^4.1.3",
     "eslint": "^1.6.0",
-    "eslint-config-exhibit": "^1.0.0",
+    "eslint-config-exhibit": "^2.0.0",
     "eslint-plugin-babel": "^2.1.1",
     "rimraf": "^2.4.3"
   },
+  "eslintConfig": {
+    "extends": "exhibit"
+  },
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "license": "MIT",
   "main": "dist/index.js",
+  "peerDependencies": {
+    "exhibit": "^0.7.0"
+  },
   "repository": "exhibitjs/builder-sw-precache",
   "scripts": {
-    "build": "rimraf dist && babel src --out-dir dist",
-    "buildwatch": "rimraf dist && babel src --out-dir dist --watch",
+    "build": "rimraf dist && babel src --out-dir dist --source-maps",
+    "buildwatch": "rimraf dist && babel src --out-dir dist --source-maps --watch",
     "prepublish": "npm run build",
     "test": "eslint ."
   }
