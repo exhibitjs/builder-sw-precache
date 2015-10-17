@@ -1,7 +1,7 @@
 {
   "name": "exhibit-builder-sw-precache",
   "description": "Generates a service worker script using sw-precache",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Callum Locke",
   "babel": {
     "stage": 0,
